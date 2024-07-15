@@ -5,25 +5,21 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { supabase } from "../lib/supabaseClient";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useAuthStore } from "../lib/authStore";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  const { signIn, loading, error } = useAuthStore();
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
+    await signIn(email, password);
     if (error) {
-      toast.error(error.message);
+      toast.error(error);
     } else {
       toast.success("Signed in successfully!");
       router.push("/");
@@ -75,8 +71,9 @@ const SignIn = () => {
           <button
             type="submit"
             className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline transition duration-300"
+            disabled={loading}
           >
-            Sign In
+            {loading ? "Signing In..." : "Sign In"}
           </button>
           <Link
             href="/sign-up"
