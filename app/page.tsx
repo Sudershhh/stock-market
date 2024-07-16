@@ -1,9 +1,22 @@
 // components/Home.tsx
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
-
+import { useEffect } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function Home() {
+  useEffect(() => {
+    const isSignedIn = localStorage.getItem("isSignedIn");
+    if (isSignedIn) {
+      console.log(isSignedIn);
+      toast.success("Signed In Successfully!");
+      localStorage.removeItem("isSignedIn");
+    }
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-900 text-white">
       <Header />

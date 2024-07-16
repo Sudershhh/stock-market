@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -17,18 +17,19 @@ const SignIn = () => {
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    await signIn(email, password);
-    if (error) {
-      toast.error(error);
-    } else {
-      toast.success("Signed in successfully!");
+
+    try {
+      const signedInPromise = await signIn(email, password);
+
       router.push("/");
+      localStorage.setItem("isSignedIn", "true");
+    } catch (errorMessage) {
+      toast.error(error);
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900">
-      <ToastContainer />
       <motion.form
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}

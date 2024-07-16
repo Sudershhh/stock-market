@@ -1,6 +1,7 @@
 // stores/useAuthStore.ts
 import { create } from "zustand";
 import { supabase } from "../lib/supabaseClient";
+import { toast } from "react-toastify";
 
 interface AuthState {
   user: any;
@@ -22,6 +23,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     });
     if (error) {
       set({ error: error.message, loading: false });
+      throw new Error("Error", error);
     } else {
       set({ user: data, loading: false });
     }
@@ -29,5 +31,6 @@ export const useAuthStore = create<AuthState>((set) => ({
   signOut: async () => {
     await supabase.auth.signOut();
     set({ user: null });
+    toast.success("Successfully Signed Out!");
   },
 }));

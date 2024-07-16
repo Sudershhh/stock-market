@@ -25,16 +25,17 @@ const SignUp = () => {
     if (error) {
       toast.error(error.message);
     } else {
+      router.push("/sign-in");
+
       toast.success(
         "Signed up successfully! Please check your email for the confirmation link."
       );
-      router.push("/sign-in");
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900">
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       <motion.form
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
