@@ -20,7 +20,6 @@ const SignIn = () => {
 
     try {
       const signedInPromise = await signIn(email, password);
-
       router.push("/");
       localStorage.setItem("isSignedIn", "true");
     } catch (errorMessage) {
