@@ -4,17 +4,6 @@
 
 /* styles/globals.css */
 
-@font-face {
-  font-family: "Aeonik";
-  src: url("/public/fonts/Aeonik.otf") format("opentype");
-  font-weight: normal;
-  font-style: normal;
-}
-
-body {
-  font-family: "Aeonik", sans-serif;
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
