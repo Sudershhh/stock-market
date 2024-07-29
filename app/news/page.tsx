@@ -1,5 +1,7 @@
+import News from "@/components/News/News";
+
 function page() {
-  return <div></div>;
+  return <News />;
 }
 
 export default page;
