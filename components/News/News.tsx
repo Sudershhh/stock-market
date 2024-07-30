@@ -51,14 +51,14 @@ function News() {
   }, []);
 
   return (
-    <div className="p-8">
-      <div className="">
-        <h1 className="text-8xl">The Stock Market Times</h1>
-      </div>
+    <div className="p-8 bg-black">
+      <h1 className="text-8xl">The Stock Market Times</h1>
 
-      {news.map((newsArticle: NewsArticle, index: number) => (
-        <NewsContainer key={index} newsArticle={newsArticle} />
-      ))}
+      <div className="news-articles flex flex-wrap justify-between align-middle">
+        {news.map((newsArticle: NewsArticle, index: number) => (
+          <NewsContainer key={index} newsArticle={newsArticle} />
+        ))}
+      </div>
     </div>
   );
 }

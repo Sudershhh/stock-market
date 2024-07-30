@@ -10,7 +10,7 @@ const Header = () => {
   const { user, signOut } = useAuthStore();
 
   return (
-    <header className="bg-gray-800 text-gray-100">
+    <header className="bg-black text-gray-100">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="text-2xl font-bold">
           <Link href="/" className="text-green-500 hover:text-green-700">

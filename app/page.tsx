@@ -1,11 +1,11 @@
 // components/Home.tsx
 "use client";
 
-import Header from "@/components/Header";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   useEffect(() => {
@@ -18,8 +18,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-900 text-white font-aeonik">
-      <Header />
+    <div className="min-h-screen flex flex-col text-white font-aeonik">
       <main className="flex-grow flex flex-col items-center justify-center text-center px-8">
         <section className="w-full flex flex-col justify-start align-middle ">
           <motion.h1
@@ -50,11 +49,12 @@ export default function Home() {
           </motion.p>
         </section>
       </main>
-      <footer className="py-4 bg-gray-800 text-center">
+      <Footer />
+      {/* <footer className="py-4 bg-gray-800 text-center">
         <p className="text-sm text-gray-400">
           © 2024 Stock Market App. All rights reserved.
         </p>
-      </footer>
+      </footer> */}
     </div>
   );
 }
