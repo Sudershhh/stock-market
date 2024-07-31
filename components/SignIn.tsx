@@ -1,13 +1,15 @@
 // components/SignIn.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useAuthStore } from "../lib/authStore";
+import { Button, Input } from "@nextui-org/react";
+import { MailIcon, VenetianMask } from "lucide-react";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -15,11 +17,21 @@ const SignIn = () => {
   const router = useRouter();
   const { signIn, loading, error } = useAuthStore();
 
+  const validateEmail = (email: string) =>
+    email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+
+  const isInvalid = useMemo(() => {
+    if (email === "") return false;
+
+    return validateEmail(email) ? false : true;
+  }, [email]);
+
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
       const signedInPromise = await signIn(email, password);
+
       router.push("/");
       localStorage.setItem("isSignedIn", "true");
     } catch (errorMessage) {
@@ -28,53 +40,50 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900">
+    <div className="min-h-screen flex items-center justify-center bg-black">
       <motion.form
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md"
+        className="bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-md"
         onSubmit={handleSignIn}
       >
-        <h1 className="text-4xl font-bold mb-6 text-green-500">Sign In</h1>
-        <div className="mb-4">
-          <label
-            className="block text-gray-400 text-sm font-medium mb-2"
-            htmlFor="email"
-          >
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
+        <h1 className="text-2xl font-bold text-green-400 mb-16">
+          Sign in to your account
+        </h1>
+        <div className="mt-8">
+          <Input
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-900 leading-tight focus:outline-none focus:shadow-outline"
+            type="email"
+            label="Email"
+            variant="bordered"
+            isInvalid={isInvalid}
+            color={isInvalid ? "danger" : "success"}
+            errorMessage="Please enter a valid email"
+            onValueChange={setEmail}
+            labelPlacement="outside"
+            className=" w-full"
+            startContent={<MailIcon />}
           />
         </div>
-        <div className="mb-6">
-          <label
-            className="block text-gray-400 text-sm font-medium mb-2"
-            htmlFor="password"
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
+        <div className="my-8">
+          <Input
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-900 leading-tight focus:outline-none focus:shadow-outline"
+            type="password"
+            label="Password"
+            variant="bordered"
+            onValueChange={setPassword}
+            className="w-full "
+            color="success"
+            labelPlacement="outside"
+            startContent={<VenetianMask color="white" />}
           />
         </div>
         <div className="flex items-center justify-between mb-4">
-          <button
-            type="submit"
-            className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline transition duration-300"
-            disabled={loading}
-          >
-            {loading ? "Signing In..." : "Sign In"}
-          </button>
+          <Button color="success" type="submit" isDisabled={loading}>
+            Sign In
+          </Button>
+
           <Link
             href="/sign-up"
             className="inline-block align-baseline font-medium text-sm text-green-500 hover:text-green-700 transition duration-300"
