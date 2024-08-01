@@ -1,40 +1,60 @@
 // components/SignUp.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { supabase } from "../lib/supabaseClient";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Button, Input } from "@nextui-org/react";
+import { MailIcon, VenetianMask } from "lucide-react";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const router = useRouter();
+
+  const validateEmail = (email: string) =>
+    email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+
+  const isInvalid = useMemo(() => {
+    if (email === "") return false;
+
+    return validateEmail(email) ? false : true;
+  }, [email]);
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-    });
+    try {
+      if (password !== confirmPassword) {
+        toast.error("Passwords do not match!");
+        throw new Error("Passwords do not match!");
+      }
 
-    if (error) {
-      toast.error(error.message);
-    } else {
-      router.push("/sign-in");
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+      if (error) {
+        throw new Error(error.message);
+      } else {
+        router.push("/sign-in");
 
-      toast.success(
-        "Signed up successfully! Please check your email for the confirmation link."
-      );
+        toast.success(
+          "Signed up successfully! Please check your email for the confirmation link."
+        );
+      }
+    } catch (errorObject) {
+      toast.error("Failed. Please try again!");
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900">
+    <div className="min-h-screen flex items-center justify-center bg-black">
       {/* <ToastContainer /> */}
       <motion.form
         initial={{ opacity: 0, y: 50 }}
@@ -44,36 +64,48 @@ const SignUp = () => {
         onSubmit={handleSignUp}
       >
         <h1 className="text-4xl font-bold mb-6 text-green-500">Sign Up</h1>
-        <div className="mb-4">
-          <label
-            className="block text-gray-400 text-sm font-medium mb-2"
-            htmlFor="email"
-          >
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
+        <div className="my-10">
+          <Input
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-900 leading-tight focus:outline-none focus:shadow-outline"
+            type="email"
+            label="Email"
+            variant="bordered"
+            isInvalid={isInvalid}
+            color={isInvalid ? "danger" : "success"}
+            errorMessage="Please enter a valid email"
+            onValueChange={setEmail}
+            labelPlacement="outside"
+            className=" w-full"
+            startContent={<MailIcon />}
           />
         </div>
-        <div className="mb-6">
-          <label
-            className="block text-gray-400 text-sm font-medium mb-2"
-            htmlFor="password"
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
+        <div className="mb-14">
+          <Input
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-900 leading-tight focus:outline-none focus:shadow-outline"
+            type="password"
+            label="Password"
+            variant="bordered"
+            onValueChange={setPassword}
+            className="w-full "
+            color="success"
+            labelPlacement="outside"
+            startContent={<VenetianMask color="white" />}
           />
         </div>
+        <div className="my-6">
+          <Input
+            value={confirmPassword}
+            type="password"
+            label="Confirm Password"
+            variant="bordered"
+            onValueChange={setConfirmPassword}
+            className="w-full "
+            color="success"
+            labelPlacement="outside"
+            startContent={<VenetianMask color="white" />}
+          />
+        </div>
+
         <div className="flex items-center justify-between mb-4">
           <button
             type="submit"

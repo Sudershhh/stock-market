@@ -35,9 +35,9 @@ export default function RootLayout({
             newestOnTop={false}
             closeOnClick
             rtl={false}
-            pauseOnFocusLoss
+            // pauseOnFocusLoss
             draggable
-            pauseOnHover
+            // pauseOnHover
             theme="light"
           />
         </NextUIProvider>
