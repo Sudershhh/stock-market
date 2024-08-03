@@ -24,7 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-black text-gray-100`}>
+      <head>
+        <link rel="icon" href="/dollar-sign.svg" sizes="any" />
+      </head>
+      <body className={`${inter.className}  text-gray-100`}>
         <NextUIProvider>
           <Header />
           {children}

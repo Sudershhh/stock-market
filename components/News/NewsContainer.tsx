@@ -1,55 +1,63 @@
 import { NewsArticle } from "@/types/newsApi";
-import { Card, CardFooter, Image, Button } from "@nextui-org/react";
+import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
+import { motion } from "framer-motion";
+
+// function NewsContainer(props: any) {
+//   const { title, image, body, date }: NewsArticle = props.newsArticle;
+
+//   return (
+//     <div className="my-4 max-w-80">
+//       <Card className="py-4">
+//         <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+//           <p className="text-tiny uppercase font-bold">{title}</p>
+//           <small className="text-default-500">{date}</small>
+//           <h4 className="font-bold text-large text-ellipsis whitespace-nowrap overflow-hidden">
+//             {body}
+//           </h4>
+//         </CardHeader>
+//         <CardBody className="overflow-visible py-2">
+//           <Image
+//             alt="Card background"
+//             className="object-cover rounded-xl"
+//             src={image}
+//             width={270}
+//           />
+//         </CardBody>
+//       </Card>
+//     </div>
+//   );
+// }
+
+// export default NewsContainer;
 
 function NewsContainer(props: any) {
   const { title, image, body, date }: NewsArticle = props.newsArticle;
 
   return (
-    <div className="">
-      {/* <div className="news-image-holder">
-        <Image
-          src={image}
-          width={120}
-          height={80}
-          alt="news article preview image"
-          objectFit="cover"
-          className="rounded-md w-full"
-        />
-      </div>
-      <div className="topics-holder flex my-4">
-        <div>topic</div>
-        <div>topic</div>
-        <div>topic</div>
-      </div>
-      <h1 className="text-xl font-bold capitalize">{title}</h1>
-
-      <p className="truncate my-4">{body}</p>
-
-      <div className="news-footer flex self-end">
-        <p className="text-gray-400">{date}</p>
-      </div> */}
-      <Card isFooterBlurred radius="lg" className="border-none">
-        <Image
-          alt="Woman listing to music"
-          className="object-cover"
-          height={400}
-          src="https://nextui.org/images/hero-card.jpeg"
-          width={400}
-        />
-        <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
-          <p className="text-tiny text-white/80">{title}</p>
-          <Button
-            className="text-tiny text-white bg-black/20"
-            variant="flat"
-            color="default"
-            radius="lg"
-            size="sm"
-          >
-            Read
-          </Button>
-        </CardFooter>
+    <motion.div
+      className="my-4 max-w-80 cursor-pointer"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <Card className="py-4">
+        <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+          <p className="text-large uppercase font-bold">{title}</p>
+          <small className="text-default-500">{date}</small>
+          <h4 className="font-bold text-tiny overflow-hidden overflow-ellipsis whitespace-nowrap mt-2">
+            {body}
+          </h4>
+        </CardHeader>
+        <CardBody className="overflow-visible py-2">
+          <Image
+            alt="Card background"
+            className="object-cover rounded-xl"
+            src={image}
+            width={270}
+            height={150}
+          />
+        </CardBody>
       </Card>
-    </div>
+    </motion.div>
   );
 }
 

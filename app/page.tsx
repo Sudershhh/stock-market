@@ -18,8 +18,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col text-white font-aeonik">
-      <main className="flex-grow flex flex-col items-center justify-center text-center px-8">
+    <div className="bg-grid min-h-screen flex flex-col text-white font-aeonik">
+      <main className="dark flex-grow flex flex-col items-center justify-center text-center px-8">
         <section className="w-full flex flex-col justify-start align-middle ">
           <motion.h1
             className="text-6xl font-bold mb-4 text-emerald-600 text-left"
