@@ -1,4 +1,3 @@
-// components/SignIn.tsx
 "use client";
 
 import { useState, useMemo } from "react";
@@ -40,7 +39,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black">
+    <div className="min-h-screen flex items-center justify-center">
       <motion.form
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}

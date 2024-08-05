@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { newsApi } from "@/public/dummyData/newsApi";
 import NewsContainer from "./NewsContainer";
 import { NewsArticle } from "@/types/newsApi";
+import Header from "../Header";
 function News() {
   const [news, setNews] = useState<NewsArticle[]>([]);
   const [newsFetchedError, setNewsFetchedError] = useState();
@@ -51,8 +52,9 @@ function News() {
   }, []);
 
   return (
-    <div className="p-8 bg-black">
-      <h1 className="text-8xl">The Stock Market Times</h1>
+    <div className="p-8">
+      <Header />
+      <h1 className="text-7xl mt-24 mb-8">The Stock Market Times</h1>
 
       <div className="news-articles flex flex-wrap justify-between align-middle">
         {news.map((newsArticle: NewsArticle, index: number) => (

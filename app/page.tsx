@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
 export default function Home() {
   useEffect(() => {
@@ -19,19 +20,28 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col text-white font-aeonik">
-      <main className="dark flex-grow flex flex-col items-center justify-center text-center px-8">
-        <section className="w-full flex flex-col justify-start align-middle ">
+      <Header />
+      <main className="dark flex-grow flex flex-col mt-32 text-center">
+        <section className="w-full flex flex-col justify-start">
           <motion.h1
-            className="text-6xl font-bold mb-4 text-emerald-600 text-left"
+            className="text-4xl font-bold"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            Master Your Investments with Confidence
+            THE PATH TO
+          </motion.h1>
+          <motion.h1
+            className="text-6xl font-bold mt-4 text-secondary-600"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            FINANCIAL EXCELLENCE
           </motion.h1>
 
           <motion.p
-            className="text-3xl my-4 text-left"
+            className="text-md my-4 text-center text-gray-400"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
@@ -39,7 +49,7 @@ export default function Home() {
             Real-time data, Advanced analytics, and Personalized insights.
           </motion.p>
           <motion.p
-            className="text-3xl mb-8 text-left"
+            className="text-md mb-8 text-center text-gray-400"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
