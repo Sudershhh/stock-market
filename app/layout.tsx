@@ -27,7 +27,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/dollar-sign.svg" sizes="any" />
       </head>
-      <body className={`${inter.className}  text-gray-100`}>
+      <body className={`${inter.className}  text-gray-100 relative`}>
         <NextUIProvider>
           <Header />
           {children}

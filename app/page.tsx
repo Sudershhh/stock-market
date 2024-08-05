@@ -18,7 +18,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="bg-grid min-h-screen flex flex-col text-white font-aeonik">
+    <div className="min-h-screen flex flex-col text-white font-aeonik">
       <main className="dark flex-grow flex flex-col items-center justify-center text-center px-8">
         <section className="w-full flex flex-col justify-start align-middle ">
           <motion.h1

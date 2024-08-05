@@ -86,6 +86,7 @@
   }
 }
 
-/* body {
-  background-image: url("/bg.png");
-} */
+body {
+  background: #000319;
+  color: #cbacf9;
+}
