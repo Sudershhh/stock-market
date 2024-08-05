@@ -6,6 +6,7 @@ import { ChevronDown } from "lucide-react";
 import { useAuthStore } from "@/lib/authStore";
 import React, { useState } from "react";
 import Link from "next/link";
+import { Button } from "@nextui-org/react";
 
 const Header = () => {
   const { user, signOut } = useAuthStore();
@@ -78,7 +79,7 @@ const Header = () => {
         </div>
       </div> */}
 
-      <nav className="flex space-x-4 bg-gray-800 bg-opacity-60 p-2 rounded-lg border border-gray-700 w-3/4 justify-between">
+      <nav className="flex space-x-4 bg-black bg-opacity-30 p-2 rounded-lg border border-gray-900 backdrop-filter backdrop-blur-md w-3/4 justify-between">
         <Link href="/" className="text-green-500 hover:text-green-700">
           StockMarket
         </Link>
@@ -122,20 +123,20 @@ const Header = () => {
                   >
                     Settings
                   </Link>
-                  <a
-                    href="#"
-                    className="block rounded-lg py-2 px-3 hover:bg-gray-700"
-                    onClick={signOut}
-                  >
-                    Logout
-                  </a>
+                  <Button onClick={signOut} color="secondary" size="sm">
+                    Sign Out
+                  </Button>
                 </div>
               </PopoverPanel>
             </Popover>
           ) : (
-            <Link href="/sign-in" className="hover:text-green-500">
+            // <Link href="/sign-in" className="hover:text-green-500">
+            //   Sign In
+            // </Link>
+
+            <Button size="sm" color="primary">
               Sign In
-            </Link>
+            </Button>
           )}
         </div>
       </nav>
