@@ -87,6 +87,7 @@
 }
 
 body {
-  background: #000319;
+  /* background: #000319; */
+  background-color: black;
   color: #cbacf9;
 }
