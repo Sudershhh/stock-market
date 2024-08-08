@@ -103,20 +103,7 @@ const SignIn = () => {
             </Link>
           </div>
         </motion.form>
-        {/* <motion.div
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        >
-          <Image
-            src={"/stocketa-track.webp"}
-            alt="Stock Market Logo"
-            width={240}
-            className="rounded-xl"
-            height={100}
-            objectFit="cover"
-          />
-        </motion.div> */}
+
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
