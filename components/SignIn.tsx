@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
@@ -10,6 +10,7 @@ import { useAuthStore } from "../lib/authStore";
 import { Button, Input } from "@nextui-org/react";
 import { MailIcon, VenetianMask } from "lucide-react";
 import Image from "next/image";
+import PasswordInput from "./ui/PasswordInput";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -77,19 +78,12 @@ const SignIn = () => {
               startContent={<MailIcon color="#cbacf9" />}
             />
           </div>
-          <div className="my-8">
-            <Input
-              value={password}
-              type="password"
-              label="Password"
-              variant="bordered"
-              onValueChange={setPassword}
-              className="w-full text-secondary-400"
-              color="secondary"
-              labelPlacement="outside"
-              startContent={<VenetianMask color="#cbacf9" />}
-            />
-          </div>
+
+          <PasswordInput
+            label="Password"
+            value={password}
+            onValueChange={setPassword}
+          />
           <div className="flex items-center justify-between mb-4">
             <Button color="secondary" type="submit" isDisabled={loading}>
               Sign In
