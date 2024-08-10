@@ -1,29 +1,20 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { supabase } from "../lib/supabaseClient";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Button, Input } from "@nextui-org/react";
-import { MailIcon } from "lucide-react";
+import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import PasswordInput from "./ui/PasswordInput";
+import EmailInput from "./ui/EmailInput";
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const router = useRouter();
-
-  const validateEmail = (email: string) =>
-    email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
-
-  const isInvalid = useMemo(() => {
-    if (email === "") return false;
-
-    return validateEmail(email) ? false : true;
-  }, [email]);
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -73,20 +64,7 @@ const SignUp = () => {
             Sign Up
           </h1>
           <div className="my-10">
-            <Input
-              value={email}
-              type="email"
-              label="Email"
-              variant="bordered"
-              isInvalid={isInvalid}
-              color={isInvalid ? "danger" : "secondary"}
-              errorMessage="Please enter a valid email"
-              onValueChange={setEmail}
-              labelPlacement="outside"
-              className="w-full text-secondary-400"
-              placeholder="example@email.com"
-              startContent={<MailIcon color="#cbacf9" />}
-            />
+            <EmailInput email={email} onEmailChange={setEmail} />
           </div>
           <PasswordInput
             label="Password"
@@ -114,7 +92,7 @@ const SignUp = () => {
         </motion.form>
       </div>
 
-      <div className="flex flex-col w-full md:w-2/3">
+      <div className="flex flex-col w-full md:w-2/3 justify-center">
         <div className="relative w-full h-full">
           <video
             autoPlay
