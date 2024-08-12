@@ -8,6 +8,11 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { Button } from "@nextui-org/button";
 import { ChevronRight } from "lucide-react";
+import Image from "next/image";
+import { Accordion, AccordionItem } from "@nextui-org/react";
+
+const defaultContent =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -15,7 +20,6 @@ export default function Home() {
   useEffect(() => {
     const isSignedIn = localStorage.getItem("isSignedIn");
     if (isSignedIn) {
-      console.log(isSignedIn);
       toast.success("Signed In Successfully!");
       localStorage.removeItem("isSignedIn");
     }
@@ -103,6 +107,66 @@ export default function Home() {
             </Button>
           </motion.div>
         </section>
+
+        {/* Modern and Futuristic Section */}
+        <motion.section className="w-full min-h-screen flex justify-between">
+          {/* Accordion Section */}
+          <motion.div
+            className="flex flex-col w-2/5 p-8 space-y-6"
+            initial={{ opacity: 0, x: -100, filter: "blur(10px)" }}
+            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+          >
+            <motion.h1
+              className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 my-2"
+              initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+            >
+              Checking your stocks & crypto should be easy.
+            </motion.h1>
+
+            <Accordion variant="splitted">
+              <AccordionItem
+                key="1"
+                aria-label="Accordion 1"
+                title="Investment Insights"
+              >
+                {defaultContent}
+              </AccordionItem>
+              <AccordionItem
+                key="2"
+                aria-label="Accordion 2"
+                title="Market Trends"
+              >
+                {defaultContent}
+              </AccordionItem>
+              <AccordionItem
+                key="3"
+                aria-label="Accordion 3"
+                title="Portfolio Optimization"
+              >
+                {defaultContent}
+              </AccordionItem>
+            </Accordion>
+          </motion.div>
+
+          {/* Image Section */}
+          <motion.div
+            className="w-3/5 overflow-hidden flex justify-end max-h-full"
+            initial={{ opacity: 0, x: 100, filter: "blur(10px)" }}
+            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+          >
+            <Image
+              src={"/investments.webp"}
+              alt="Mock Investments dashboard"
+              width={1600}
+              height={900}
+              className="object-cover max-h-full w-full translate-x-1/4 -translate-y-20"
+            />
+          </motion.div>
+        </motion.section>
 
         <motion.section className="w-full flex flex-col justify-center align-middle bg-white h-screen">
           <motion.div>
