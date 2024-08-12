@@ -1,9 +1,6 @@
-"use client";
-
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import { ChevronDown } from "lucide-react";
 import { useAuthStore } from "@/lib/authStore";
-import React, { useState } from "react";
 import Link from "next/link";
 import { Button } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
@@ -17,11 +14,12 @@ const Header = () => {
   }
 
   return (
-    <header className="w-full flex justify-center items-start absolute top-4 left-0 p-2 max-h-10 rounded-lg ">
+    <header className="w-full flex justify-center items-start sticky top-4 left-0 p-2 max-h-10 rounded-lg z-50">
       <nav className="flex space-x-4 h-full text-sm  bg-opacity-30 p-1 rounded-lg border border-gray-900 backdrop-filter backdrop-blur-md w-3/4 justify-between items-center">
         <Link href="/" className="">
           StockMarket
         </Link>
+
         <Link href="/dashboard">Dashboard</Link>
         <Link href="/stocks">Stocks</Link>
         <Link href="/news">News</Link>

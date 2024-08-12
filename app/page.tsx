@@ -92,9 +92,14 @@ export default function Home() {
             <Button color="secondary" size="md">
               Get Started
             </Button>
-            <Button size="md" className="bg-black hover:bg-zinc-800">
-              Learn More
-              <ChevronRight />
+            <Button
+              size="md"
+              className="bg-black hover:bg-zinc-800 relative overflow-hidden"
+            >
+              <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+                Learn More
+              </span>
+              <ChevronRight className="text-white" />
             </Button>
           </motion.div>
         </section>
