@@ -108,47 +108,49 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* Modern and Futuristic Section */}
-        <motion.section className="w-full min-h-screen flex justify-between">
-          {/* Accordion Section */}
+        <motion.section className="w-full min-h-screen flex justify-between ">
           <motion.div
-            className="flex flex-col w-2/5 p-8 space-y-6"
             initial={{ opacity: 0, x: -100, filter: "blur(10px)" }}
             animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
             transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="flex flex-col w-2/5  items-center justify-center"
           >
             <motion.h1
-              className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 my-2"
+              className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 mb-10"
               initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 1.5, ease: "easeInOut" }}
             >
               Checking your stocks & crypto should be easy.
             </motion.h1>
-
-            <Accordion variant="splitted">
-              <AccordionItem
-                key="1"
-                aria-label="Accordion 1"
-                title="Investment Insights"
-              >
-                {defaultContent}
-              </AccordionItem>
-              <AccordionItem
-                key="2"
-                aria-label="Accordion 2"
-                title="Market Trends"
-              >
-                {defaultContent}
-              </AccordionItem>
-              <AccordionItem
-                key="3"
-                aria-label="Accordion 3"
-                title="Portfolio Optimization"
-              >
-                {defaultContent}
-              </AccordionItem>
-            </Accordion>
+            <motion.div className="w-3/4">
+              <Accordion variant="splitted">
+                <AccordionItem
+                  key="1"
+                  aria-label="Accordion 1"
+                  title="Investment Insights"
+                >
+                  Unlock in-depth insights into your portfolio with real-time
+                  data and personalized recommendations.
+                </AccordionItem>
+                <AccordionItem
+                  key="2"
+                  aria-label="Accordion 2"
+                  title="Market Trends"
+                >
+                  Our platform tracks key movements and alerts you to
+                  opportunities that matter to your investments.
+                </AccordionItem>
+                <AccordionItem
+                  key="3"
+                  aria-label="Accordion 3"
+                  title="Portfolio Optimization"
+                >
+                  Adjust your asset allocation to align with your financial
+                  goals, balancing risk and reward.
+                </AccordionItem>
+              </Accordion>
+            </motion.div>
           </motion.div>
 
           {/* Image Section */}
@@ -163,8 +165,9 @@ export default function Home() {
               alt="Mock Investments dashboard"
               width={1600}
               height={900}
-              className="object-cover max-h-full w-full translate-x-1/4 -translate-y-20"
+              className="object-cover max-h-full w-full translate-x-1/4 -translate-y-20 relative"
             />
+            <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-black via-transparent to-transparent rounded-xl"></div>
           </motion.div>
         </motion.section>
 
