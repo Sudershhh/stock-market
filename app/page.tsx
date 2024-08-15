@@ -11,9 +11,6 @@ import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { Accordion, AccordionItem } from "@nextui-org/react";
 
-const defaultContent =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
-
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -52,7 +49,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col text-white font-aeonik">
       <Header />
       <main className="dark flex-grow flex flex-col mt-32 text-center">
-        <section className="w-full flex flex-col justify-start min-h-screen">
+        <section className="w-full flex flex-col justify-start">
           <motion.h1
             className="text-4xl font-bold"
             initial={{ opacity: 0, x: -100, filter: "blur(10px)" }}
@@ -108,7 +105,7 @@ export default function Home() {
           </motion.div>
         </section>
 
-        <motion.section className="w-full min-h-screen flex justify-between ">
+        <motion.section className="w-full min-h-screen flex justify-between my-20">
           <motion.div
             initial={{ opacity: 0, x: -100, filter: "blur(10px)" }}
             animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
