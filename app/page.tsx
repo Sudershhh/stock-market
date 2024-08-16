@@ -150,7 +150,6 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          {/* Image Section */}
           <motion.div
             className="w-3/5 overflow-hidden flex justify-end max-h-full"
             initial={{ opacity: 0, x: 100, filter: "blur(10px)" }}
@@ -171,7 +170,7 @@ export default function Home() {
         <motion.section className="w-full flex flex-col justify-center align-middle bg-white h-screen">
           <motion.div>
             <video ref={videoRef} muted loop>
-              <source src="/void.mp4" type="video/mp4" />
+              <source src="/3DLandingStocks.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </motion.div>
