@@ -52,14 +52,16 @@ function News() {
   }, []);
 
   return (
-    <div className="p-8">
+    <div className="p-8 min-h-screen">
       <Header />
-      <h1 className="text-7xl mt-24 mb-8">The Stock Market Times</h1>
+      <div className="m-24">
+        <h1 className="text-7xl mt-24 mb-8">The Stock Market Times</h1>
 
-      <div className="news-articles flex flex-wrap justify-between align-middle">
-        {news.map((newsArticle: NewsArticle, index: number) => (
-          <NewsContainer key={index} newsArticle={newsArticle} />
-        ))}
+        <div className="news-articles flex flex-wrap justify-between align-middle">
+          {news.map((newsArticle: NewsArticle, index: number) => (
+            <NewsContainer key={index} newsArticle={newsArticle} />
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -1,62 +1,46 @@
 import { NewsArticle } from "@/types/newsApi";
-import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
+import { Image, Button } from "@nextui-org/react";
 import { motion } from "framer-motion";
 
-// function NewsContainer(props: any) {
-//   const { title, image, body, date }: NewsArticle = props.newsArticle;
+const formatDateTime = (dateTimeString: string): string => {
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  };
 
-//   return (
-//     <div className="my-4 max-w-80">
-//       <Card className="py-4">
-//         <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-//           <p className="text-tiny uppercase font-bold">{title}</p>
-//           <small className="text-default-500">{date}</small>
-//           <h4 className="font-bold text-large text-ellipsis whitespace-nowrap overflow-hidden">
-//             {body}
-//           </h4>
-//         </CardHeader>
-//         <CardBody className="overflow-visible py-2">
-//           <Image
-//             alt="Card background"
-//             className="object-cover rounded-xl"
-//             src={image}
-//             width={270}
-//           />
-//         </CardBody>
-//       </Card>
-//     </div>
-//   );
-// }
+  const date = new Date(dateTimeString);
+  return date.toLocaleDateString("en-US", options);
+};
 
-// export default NewsContainer;
-
-function NewsContainer(props: any) {
-  const { title, image, body, date }: NewsArticle = props.newsArticle;
+function NewsContainer(props: { newsArticle: NewsArticle }) {
+  const { title, image, dateTime } = props.newsArticle;
 
   return (
     <motion.div
-      className="my-4 max-w-80 cursor-pointer"
+      className="my-4 max-w-sm cursor-pointer rounded-xl w-2/3 p-4 h-auto"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >
-      <Card className="py-4">
-        <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-          <p className="text-large uppercase font-bold">{title}</p>
-          <small className="text-default-500">{date}</small>
-          <h4 className="font-bold text-tiny overflow-hidden overflow-ellipsis whitespace-nowrap mt-2">
-            {body}
-          </h4>
-        </CardHeader>
-        <CardBody className="overflow-visible py-2">
-          <Image
-            alt="Card background"
-            className="object-cover rounded-xl"
-            src={image}
-            width={270}
-            height={150}
-          />
-        </CardBody>
-      </Card>
+      <Image
+        removeWrapper
+        alt="Relaxing app background"
+        className="z-0  object-cover"
+        src={image}
+      />
+      <div className="mt-4">
+        <h1 className="text-white text-xl font-semibold">{title}</h1>
+        <div className="flex justify-between items-center mt-2">
+          <Button size="sm">Read</Button>
+          <p className="text-gray-300 text-xs text-center">
+            {formatDateTime(dateTime)}
+          </p>
+        </div>
+      </div>
     </motion.div>
   );
 }
