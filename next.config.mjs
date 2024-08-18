@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   images: {
-    domains: ["apicms.thestar.com.my"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "apicms.thestar.com.my",
+        port: "",
+      },
+    ],
   },
 };
 export default nextConfig;
